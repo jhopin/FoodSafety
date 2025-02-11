@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Top Foods for {{ DiseaseName }}</title>
+</head>
+<body>
+    <h1>Top 3 Foods for {{ DiseaseName }}</h1>
+    <ul>
+        {% for food, score in top_10_foods %}
+            <li>{{ food.FoodName }} - Score: {{ score }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

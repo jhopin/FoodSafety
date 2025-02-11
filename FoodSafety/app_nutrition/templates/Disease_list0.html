@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Disease List</title>
+    <style>
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        #food-list {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+        .food-item {
+            padding: 5px;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.button').on('click', function(){
+                var diseaseName = $(this).text();
+                $.ajax({
+                    url: '/get_top_foods/',
+                    data: { 'disease_name': diseaseName },
+                    success: function(data) {
+                        $('#food-list').html(data);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Disease List</h1>
+    <div>
+        {% for disease in diseases %}
+            <button class="button">{{ disease.0 }}</button>
+        {% endfor %}
+    </div>
+    <div id="food-list">
+        <!-- Foods will be displayed here -->
+    </div>
+</body>
+</html>
